@@ -177,6 +177,7 @@ failexitcode
 
 run_postinst() {
   dfmgr_run_post
+  chmod 755 "$APPDIR/autostart"
 }
 
 execute \
