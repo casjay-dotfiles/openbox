@@ -64,6 +64,8 @@ elif cmd_exist tint2; then
 elif cmd_exist lemonbar; then
   __kill lemonbar
   __start "$HOME/.config/lemonbar/lemonbar.sh"
+else
+  PANEL="none"
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -285,10 +287,12 @@ fi
 
 # Session
 
-# if cmd_exist xfce4-session; then
-#   __kill xfce4-session
-#   __start xfce4-session
-# fi
+if [ "$PANEL" = "none" ]; then
+  if cmd_exist xfce4-session; then
+    __kill xfce4-session
+    __start xfce4-session
+  fi
+fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
