@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-PROG="autostart"
+PROG="autostart.sh"
 USER="${SUDO_USER:-${USER}}"
 HOME="${USER_HOME:-${HOME}}"
 
@@ -13,17 +13,17 @@ HOME="${USER_HOME:-${HOME}}"
 # @Author        : Jason Hempstead
 # @Contact       : jason@casjaysdev.com
 # @License       : WTFPL
-# @ReadME        : autostart --help
+# @ReadME        : autostart.sh --help
 # @Copyright     : Copyright: (c) 2021 Jason Hempstead, CasjaysDev
 # @Created       : Saturday, Feb 13, 2021 23:41 EST
-# @File          : autostart
+# @File          : autostart.sh
 # @Description   : autostart script for openbox
 # @TODO          :
 # @Other         :
 # @Resource      :
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Help
-[[ "$1" = *help ]] && printf "%s\n" "Usage: autostart" "Starts applications for openbox window manager" && exit
+[[ "$1" = *help ]] && printf "%s\n" "Usage: autostart.sh" "Starts applications for openbox window manager" && exit
 
 # Set functions
 __running() { __pid "$1" >/dev/null 2>&1; }
@@ -45,7 +45,7 @@ __start() {
 __cmd_exist dmenupass && SUDO_ASKPASS="dmenupass"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # set desktop session
-DESKTOP_SESSION="${DESKTOP_SESSION:-openbox}"
+DESKTOP_SESSION="${DESKTOP_SESSION:-sway}"
 
 # set config dir
 DESKTOP_SESSION_CONFDIR="$HOME/.config/$DESKTOP_SESSION"
@@ -154,10 +154,7 @@ elif [ -f /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ]; then
 fi
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Notification daemon
-if __cmd_exist notify-daemon; then
-  __kill notify-daemon
-  __start notify-daemon
-elif [ -f /usr/lib/xfce4/notifyd/xfce4-notifyd ]; then
+if [ -f /usr/lib/xfce4/notifyd/xfce4-notifyd ]; then
   __kill xfce4-notifyd
   __start /usr/lib/xfce4/notifyd/xfce4-notifyd
 elif [ -f /usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd ]; then
@@ -190,7 +187,7 @@ fi
 # Wallpaper manager
 if __cmd_exist randomwallpaper; then
   __kill randomwallpaper
-  __start randomwallpaper
+  __start randomwallpaper --bg
 elif __cmd_exist variety; then
   __kill variety
   __start variety
