@@ -79,7 +79,7 @@ dfmgr_run_init
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # end with a space
 APP="$APPNAME obconf scrot htop sxhkd sxiv zathura firefox notify-send iwconfig catfish "
-APP+="xfce4-terminal xfce4-power-manager xscreensaver conky tint2 xbindkeys volumeicon "
+APP+="xfce4-terminal xfce4-power-manager xscreensaver conky tint2 xbindkeys volumeicon lxappearance qt5ct "
 PERL=""
 PYTH=""
 PIPS=""
